@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:p="http://primefaces.org/ui">
+   <h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+   	<h:body>
+  		<h:form id="form">
+  			<p:growl id="msgs" showDetail="true" />
+  			<p:fieldset legend="#{msg['title']}" style="margin-bottom:20px">
+  				<h:panelGrid columns="2" cellpadding="5">
+  					<p:outputLabel for="name" value="Nombre:" />
+	   				<p:inputText id="name" value="#{bean.userName}" required="true"/>
+	   				<p:outputLabel for="lastName" value="Apellidos:" />
+	   				<p:inputText id="lastName" value="#{bean.userLastName}" required="true"/>
+	   				<p:outputLabel for="country" value="País:" />
+	   				<p:selectOneMenu id="country" value="#{bean.country}" style="width:250px">
+	   					<f:selectItem itemLabel="Selecciona pais" itemValue="" noSelectionOption="true" />
+	   					<f:selectItems value="#{bean.countries}"/>
+	   					<p:ajax listener="#{bean.loadCities}" update="city" />
+	   				</p:selectOneMenu>
+	   				<p:outputLabel for="city" value="Ciudad:" />
+	   				<p:selectOneMenu id="city" value="#{bean.city}" style="width:250px">
+	   					<f:selectItem itemLabel="Selecciona provincia" itemValue="" noSelectionOption="true" />
+	   					<f:selectItems value="#{bean.cities}"/>
+	   				</p:selectOneMenu>
+	   				
+	   				
+	   				<p:commandButton value="submit" id="ajax" update="msgs" process="city" actionListener="#{bean.loadMessage}" styleClass="ui-icon-disk" />
+  				</h:panelGrid>  				
+  			</p:fieldset>
+  		</h:form>
+   </h:body>
+</html>

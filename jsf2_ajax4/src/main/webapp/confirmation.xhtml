@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets">
+   <h:head/>
+   <ui:composition template="/template.xhtml">
+   		<ui:define name="title">
+   			<h:panelGrid columns="1" styleClass="h1">
+   				<h:outputFormat value="Se han introducido los siguientes datos:" />
+   			</h:panelGrid>   			
+   		</ui:define>
+   		<ui:define name="body">
+	   		<h:form>
+	   			<h:panelGrid columns="2" cellpadding="5">
+	   				<h:outputLabel for="name" value="Nombre:" />
+	   				<h:outputLabel id="name" value="#{bean.userName}"/>
+	   				<h:outputLabel for="lastName" value="Apellidos:" />
+	   				<h:outputLabel id="lastName" value="#{bean.userLastName}"/>
+	   				<h:outputLabel for="country" value="País:" />
+	   				<h:outputLabel id="country" value="#{bean.country}" />
+	   				<h:outputLabel for="city" value="Ciudad:" />
+	   				<h:outputLabel id="city" value="#{bean.city}" />
+	   			</h:panelGrid>
+	   		</h:form>
+   		</ui:define>
+   </ui:composition>
+   
+</html>

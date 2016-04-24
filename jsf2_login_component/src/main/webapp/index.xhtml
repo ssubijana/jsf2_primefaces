@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:aut="http://java.sun.com/jsf/composite/components/autentia">
+    <h:outputLabel value="Not rendered" />
+    <ui:composition template="layout.xhtml">
+    	<ui:define name="title">
+    		<h:outputLabel value="Alta de usuario" />
+    	</ui:define>
+    	<ui:define name="body">
+    		<h:form id="loginForm">
+				<h:panelGrid columns="2">
+					<aut:loginPanel entity="#{loginBean}" idfield="id" idlong="10" passlong="20" passfield="password" action="#{loginBean.login}">
+						<f:validateLength for="idinput" maximum="10"  />
+						<f:validateLength for="passinput" maximum="20" />
+						<f:actionListener for="loginButton" type="com.autentia.beans.LoginBean" />
+					</aut:loginPanel>
+				</h:panelGrid>
+			</h:form>
+    	</ui:define>  
+		<!-- <ui:define name="subfooter">Hola</ui:define>  -->
+    </ui:composition>
+	
+
+</html>

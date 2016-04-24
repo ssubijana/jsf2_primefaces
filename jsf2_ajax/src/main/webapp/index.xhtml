@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets">
+   <h:head/>
+   <ui:composition template="/template.xhtml">
+   		<ui:define name="title">
+   			<h:panelGrid columns="1" styleClass="h1">
+   				<h:outputFormat value="Rellene la información de usuario" />
+   			</h:panelGrid>   			
+   		</ui:define>
+   		<ui:define name="body">
+	   		<h:form >
+	   			<h:panelGrid columns="2" cellpadding="5">
+	   				<h:outputLabel for="name" value="Nombre:" />
+	   				<h:inputText id="name" value="#{bean.userName}" required="true"/>
+	   				<h:outputLabel for="lastName" value="Apellidos:" />
+	   				<h:inputText id="lastName" value="#{bean.userLastName}" required="true"/>
+	   				<h:outputLabel for="country" value="País:" />
+	   				<h:selectOneMenu id="country" value="#{bean.country}" >
+	   					<f:selectItem itemLabel="Selecciona pais" itemValue="" noSelectionOption="true" />
+	   					<f:selectItems value="#{bean.countries}"/>
+	   					<f:ajax event="change" listener="#{bean.loadCities}" render="city message"></f:ajax>
+	   				</h:selectOneMenu>
+	   				<h:outputLabel for="city" value="Ciudad:" />
+	   				<h:selectOneMenu id="city" value="#{bean.city}">
+	   					<f:selectItem itemLabel="Selecciona provincia" itemValue="" noSelectionOption="true" />
+	   					<f:selectItems value="#{bean.cities}"/>
+	   				</h:selectOneMenu>
+	   				
+	   				<h:commandButton value="submit" >
+	   					<f:ajax execute="country city" listener="#{bean.loadMessage}" render="message" />
+	   				</h:commandButton>
+	   				<h:outputText value="#{bean.message}" id="message" />
+	   			</h:panelGrid>
+	   		</h:form>
+   		</ui:define>
+   </ui:composition>
+   
+</html>

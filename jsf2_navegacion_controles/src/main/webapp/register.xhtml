@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+  <h:form id="registro">
+	<h:outputText value="Formulario de registro" style="font-size: large; font-weight: bold"/>    
+    <h:panelGrid columns="2">
+    	  <h:outputLabel for="fname" value="Nombre:"/>
+          <h:inputText	 id="fname"	 value="#{userBean.firstName}" required="true"/>
+          
+    	  <h:outputLabel for="lname" value="Apellidos:"/>
+          <h:inputText	 id="lname"  value="#{userBean.lastName}" required="true"/>
+          
+          <h:outputLabel for="sex" value="Sexo:"/>
+          <h:selectOneRadio id="sex" value="#{userBean.sex}" required="true">
+	            <f:selectItem itemLabel="Hombre"  itemValue="hombre" />
+	            <f:selectItem itemLabel="Mujer"   itemValue="mujer" />
+          </h:selectOneRadio>
+
+	      <h:outputLabel for="dob" value="F. Nacimiento:"/>
+          <h:inputText   id="dob" value="#{userBean.dob}" required="true" title="Formato (dd-MM-yyyy)">
+            	<f:convertDateTime pattern="dd-MM-yyyy" />
+          </h:inputText> 
+                    
+        <h:outputLabel for="email" value="E-mail:"/>
+        <h:inputText   id="email" value="#{userBean.email}" required="true" validator="#{userBean.validateEmail}"/>
+
+        <h:outputLabel for="serviceLevel" value="Nivel de servicio:"/>
+        <h:selectOneMenu id="serviceLevel" value="#{userBean.serviceLevel}">
+	            <f:selectItem itemLabel="Basico" 	itemValue="0" />
+	            <f:selectItem itemLabel="Medio"		itemValue="1" />
+	            <f:selectItem itemLabel="Alto"		itemValue="2" />
+        </h:selectOneMenu>
+        
+        <h:commandButton value="Cancel"   action="index" immediate="true" />
+    	<h:commandButton value="Register" action="confirm" />
+    </h:panelGrid>
+    
+    <h:messages/>
+  </h:form>
+</h:body>
+</html>

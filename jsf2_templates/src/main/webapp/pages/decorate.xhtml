@@ -1,0 +1,20 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:decorate template="layout.xhtml">
+    	<ui:define name="title">
+    		<h:outputLabel value="Alta de usuario" />
+    	</ui:define>
+    	<ui:define name="body">
+    		<h:panelGrid columns="2">
+    			<h:outputLabel value="Contenido del body: DECORATE" />
+    		</h:panelGrid>
+    	</ui:define>
+    	<ui:define name="footer">
+    		Pie de pagina decorate
+    	</ui:define>  
+    </ui:decorate>
+	<span>Contenido renderizado</span>
+
+</f:view>

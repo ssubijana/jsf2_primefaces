@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<h:outputStylesheet library="css" name="styles.css" />
+	</h:head>
+   	<h:body>
+   		<h:form id="form">
+   			<p:growl id="msgs" showDetail="true" />
+   			<h:panelGrid columns="2" cellpadding="5">
+   				<p:outputLabel for="userName" value="Nombre y apellidos:" />
+   				<p:inputText id="userName" value="#{dataView.user.name}" required="true"/>
+   				
+   				<p:outputLabel for="bornDate" value="Fecha de nacimiento:" />
+   				<p:calendar id="bornDate" value="#{dataView.user.bornDate}" showOn="button" pattern="dd-MM-yyyy" mask="true"/>
+   				
+   				<p:outputLabel for="documentType" value="Tipo de documento:" />
+   				<p:selectOneMenu id="documentType" value="#{dataView.user.documentType}" style="width:150px" converter="documentTypeConverter">
+	                <f:selectItem itemLabel="Seleccione tipo de documento" itemValue="" noSelectionOption="true" />
+	                <f:selectItems value="#{dataView.documentTypes}" var="documentType" itemLabel="#{msg[documentType.description]}"/>
+            	</p:selectOneMenu>
+            	
+            	<p:outputLabel for="document" value="Documento:" />
+   				<p:inputText id="document" value="#{dataView.user.document}" />
+   			</h:panelGrid>
+   			<p:commandButton value="Submit" update="msgs" actionListener="#{dataView.showDialog}" icon="ui-icon-check" />
+   			
+   			<p:button id="enabledButton" value="Habilita" disabled="#{!dataView.availableButton}" />
+   			
+   			<p:dialog modal="true" resizable="false" header="Información enviada" widgetVar="dlg" showEffect="fold">
+		        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+		            <h:outputText value="Nombre y apellidos:" />
+		            <h:outputText value="#{dataView.user.name}" />
+		 
+		            <h:outputText value="Fecha de nacimiento" />
+		            <h:outputText value="#{dataView.user.bornDate}">
+		                <f:convertDateTime pattern="MM/dd/yyyy" timeZone="CET"/>
+		            </h:outputText>
+		 
+		            <h:outputText value="Tipo de documento:" />
+		            <h:outputText value="#{dataView.user.documentType}">
+		                <f:converter converterId="documentTypeConverter" />
+		            </h:outputText>
+		 
+		            <h:outputText value="Documento:" />
+		            <h:outputText value="#{dataView.user.document}" />
+		            
+		            <p:commandButton value="Enable" update="enabledButton" actionListener="#{dataView.enableButton(true)}" />
+		            <p:commandButton value="Disable" update="enabledButton" actionListener="#{dataView.enableButton(false)}" />
+	           	</p:panelGrid>
+           </p:dialog>
+   		</h:form>
+   	</h:body>
+</html>

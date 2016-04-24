@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:cc="http://java.sun.com/jsf/composite">
+         
+	<h:head>
+   		<title>No rendered</title>
+	</h:head>
+ 	<h:body>
+   		<cc:interface displayName="Login panel" >
+   			<cc:attribute name="entity" required="true" />
+   			<cc:attribute name="idfield" required="true" />
+   			<cc:attribute name="passfield" required="true" />
+	      	<cc:attribute name="idlong" required="true" />
+	      	<cc:attribute name="passlong"  required="true" />
+	      	<cc:attribute name="idlabel"  required="false" default="login.id.default" />
+	      	<cc:attribute name="passlabel" required="false" default="login.password.default" />
+	      	<cc:attribute name="action" targets="loginButton" required="true" />
+	      	<cc:editableValueHolder name="idinput" />
+	      	<cc:editableValueHolder name="passinput" />
+	      	<cc:actionSource name="loginButton" />
+   		</cc:interface>
+
+   		<cc:implementation>
+		   	<h:panelGrid columns="2">
+			   	<h:panelGroup id="containerOflabelId">
+					<h:outputLabel id="idlabel"  for="#{cc.clientId}:idinput" value="#{msg[cc.attrs.idlabel]}" />
+					<h:outputText value=":" />
+				</h:panelGroup>
+				<h:inputText id="idinput" required="true" value="#{cc.attrs.entity[cc.attrs.idfield]}" >
+					<f:ajax render="message" />
+				</h:inputText>
+				<h:panelGroup id="containerOflabelPass">
+					<h:outputLabel id="passlabel"  for="#{cc.clientId}:passinput" value="#{msg[cc.attrs.passlabel]}" />
+					<h:outputText value=":" />
+				</h:panelGroup>
+				<h:inputText id="passinput" required="true" value="#{cc.attrs.entity[cc.attrs.passfield]}" >
+					<f:ajax render="message" />
+				</h:inputText>
+				<h:commandButton id="loginButton" value="#{msg['login.button.label']}" />
+			</h:panelGrid>
+			<h:message id="message" for="#{cc.clientId}" errorClass="errorMessages" />
+   		</cc:implementation>
+ 	</h:body>
+ 	
+</html>

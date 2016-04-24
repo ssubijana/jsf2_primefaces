@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head/>
+	<h:body>
+		<h:panelGroup>
+			<h:outputLabel value="#{msg['user.detail.header']}"/>
+		</h:panelGroup>
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputLabel value="#{msg['name.label']}" for="userName" />
+			<h:outputLabel id="userName" value="#{detailUserView.name}" />
+			<h:outputLabel value="#{msg['address.label']}" for="userAddress" />
+			<h:outputLabel id="userAddress" value="#{detailUserView.address}"/>
+			<h:outputLabel value="#{msg['dni.label']}" for="userDocument" />
+			<h:outputLabel id="userDocument" value="#{detailUserView.document}" />
+			<h:outputLabel value="#{msg['telephone.label']}" for="userTelephone" />
+			<h:outputLabel id="userTelephone" value="#{detailUserView.telephone}" >
+				<f:converter converterId="telephoneConverter" />
+			</h:outputLabel>
+		</h:panelGrid>
+	</h:body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head/>
+	<h:body>
+		<h:form>
+			<h:messages id="messages" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="#{msg['name.label']}" for="userName" />
+				<h:inputText id="userName" value="#{flash.name}" required="true" />
+				<h:outputLabel value="#{msg['address.label']}" for="userAddress" />
+				<h:inputText id="userAddress" value="#{flash.address}" required="true" />
+				<h:outputLabel value="#{msg['dni.label']}" for="userDocument" />
+				<h:inputText id="userDocument" value="#{flash.document}" required="true">
+					<f:validateRegex pattern="(\d{8,8}[A-Z])" />
+				</h:inputText>
+				<h:outputLabel value="#{msg['telephone.label']}" for="userTelephone" />
+				<h:inputText id="userTelephone" value="#{flash.telephone}" required="true" immediate="true" >
+					<f:validator validatorId="telephoneValidator" />
+				</h:inputText>
+				<h:commandButton value="#{msg['button.label']}" action="userDetail"/>	
+			</h:panelGrid>
+		</h:form>		
+	</h:body>
+</html>
