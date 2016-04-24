@@ -11,3 +11,4 @@ Ejercicios del curso de JSF2 y Primefaces:
 * __jsf2 ajax__: Ajax en JSF2
 * __jsf2 ajax4__: Ajax en JSF2
 * __jsf2 primefaces ajax__: Ajax en Primefaces
+* __jsf2 navegacion controles__: Navegación en JSF2
