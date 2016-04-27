@@ -14,8 +14,6 @@
    			<cc:attribute name="entity" required="true" />
    			<cc:attribute name="idfield" required="true" />
    			<cc:attribute name="passfield" required="true" />
-	      	<cc:attribute name="idlong" required="true" />
-	      	<cc:attribute name="passlong"  required="true" />
 	      	<cc:attribute name="idlabel"  required="false" default="login.id.default" />
 	      	<cc:attribute name="passlabel" required="false" default="login.password.default" />
 	      	<cc:attribute name="action" targets="loginButton" required="true" />
@@ -30,16 +28,16 @@
 					<h:outputLabel id="idlabel"  for="#{cc.clientId}:idinput" value="#{msg[cc.attrs.idlabel]}" />
 					<h:outputText value=":" />
 				</h:panelGroup>
-				<h:inputText id="idinput" required="true" value="#{cc.attrs.entity[cc.attrs.idfield]}" >
+				<h:inputText id="idinput" required="true" requiredMessage="#{msg['login.id.required.field']}" value="#{cc.attrs.entity[cc.attrs.idfield]}" >
 					<f:ajax render="message" />
 				</h:inputText>
 				<h:panelGroup id="containerOflabelPass">
 					<h:outputLabel id="passlabel"  for="#{cc.clientId}:passinput" value="#{msg[cc.attrs.passlabel]}" />
 					<h:outputText value=":" />
 				</h:panelGroup>
-				<h:inputText id="passinput" required="true" value="#{cc.attrs.entity[cc.attrs.passfield]}" >
+				<h:inputSecret id="passinput" required="true" requiredMessage="#{msg['login.password.required.field']}" value="#{cc.attrs.entity[cc.attrs.passfield]}" >
 					<f:ajax render="message" />
-				</h:inputText>
+				</h:inputSecret>
 				<h:commandButton id="loginButton" value="#{msg['login.button.label']}" />
 			</h:panelGrid>
 			<h:message id="message" for="#{cc.clientId}" errorClass="errorMessages" />

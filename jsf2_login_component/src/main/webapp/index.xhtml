@@ -13,15 +13,15 @@
     	<ui:define name="body">
     		<h:form id="loginForm">
 				<h:panelGrid columns="2">
-					<aut:loginPanel entity="#{loginBean}" idfield="id" idlong="10" passlong="20" passfield="password" action="#{loginBean.login}">
+					<aut:loginPanel entity="#{loginBean}" idfield="id" passfield="password" action="#{loginBean.login}">
 						<f:validateLength for="idinput" maximum="10"  />
 						<f:validateLength for="passinput" maximum="20" />
+						<f:validateRegex for="passinput" pattern="[a-zA-Z0-9]+" />
 						<f:actionListener for="loginButton" type="com.autentia.beans.LoginBean" />
 					</aut:loginPanel>
 				</h:panelGrid>
 			</h:form>
     	</ui:define>  
-		<!-- <ui:define name="subfooter">Hola</ui:define>  -->
     </ui:composition>
 	
 
