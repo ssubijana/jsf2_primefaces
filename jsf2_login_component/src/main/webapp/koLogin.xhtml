@@ -13,7 +13,7 @@
     	</ui:define>
     	<ui:define name="body">
     		<h:panelGrid>
-				<h:outputLabel value="Login incorrecto" />
+				<h:outputLabel value="#{loginErrorBean.errorMessage}" />
 				<h:button value="Volver al index" outcome="index" />
 			</h:panelGrid>
 		</ui:define>
